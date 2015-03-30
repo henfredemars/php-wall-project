@@ -23,7 +23,7 @@ function post_comment($c,$a) {
   return true;
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" and !empty($_POST["g-recaptcha-response"])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (check_captcha()) {
     if (post_comment((string)$_POST["comment"],(string)$_POST["author"])) {
       header("Location: index.php");
