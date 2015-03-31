@@ -8,7 +8,6 @@
                 <h1>User Login</h1>
                         <?php
                                 include('do_login.php');
-				echo "<p>Note: Logins don't do anything yet.</p>";
                         ?>
                 <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
             </div>

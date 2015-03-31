@@ -1,5 +1,19 @@
 <form role="form" action="index.php" method="POST">
-      Name: <input type="text" name="author"> Deletion Password: <input type="password" name="password">
+      Name: 
+
+<?php
+
+session_start();
+$username = $_SESSION["username"];
+if (!empty($username)) {
+  echo "<strong><mark>$username</strong></mark>";
+  echo "<input type=\"hidden\" name=\"author\" value=\"$username\">";
+} else {
+  echo "<input type=\"text\" name=\"author\">";
+}
+
+?>
+		Deletion Password: <input type="password" name="password">
       Delete this Password Now?&nbsp<input name="delete" type="checkbox" value="delete"><br>
       <textarea class="form-control" rows="5" id="comment" name="comment"></textarea><br>
       <div class="g-recaptcha" data-sitekey="6LdBTAQTAAAAAIVAup0eBvTZISBCqnKfD5IzH71s"></div>
@@ -9,7 +23,7 @@
 
 <?php
 
-function post_comment($c,$a,$p) {
+function post_comment($c,$a,$p,$logged_in) {
   $db = connect()->comments;
   $a = htmlspecialchars(trim($a));
   $c = htmlspecialchars(trim($c));
@@ -26,7 +40,7 @@ function post_comment($c,$a,$p) {
     return false;
   }
   $document = array("date"=>$date,
-    "author"=>$a,"comment"=>$c,"deletionpassword"=>$p);
+    "author"=>$a,"comment"=>$c,"deletionpassword"=>$p,"logged_in"=>$logged_in);
   $db->insert($document);
   return true;
 }
@@ -43,10 +57,15 @@ function delete_comment($a,$p) {
   }
 }
 
+session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if ((string)$_POST["delete"] != "delete") {
     if (check_captcha()) {
-      if (post_comment((string)$_POST["comment"],(string)$_POST["author"],(string)$_POST["password"])) {
+      $password = (string)$_POST["password"];
+      $author = (string)$_POST["author"];
+      $comment = (string)$_POST["comment"];
+      $logged_in = !empty($_SESSION["username"]);
+      if (post_comment($comment,$author,$password,$logged_in)) {
         header("Location: index.php");
       }
     } else {

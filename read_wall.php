@@ -50,7 +50,12 @@ foreach ($cursor as $document) {
     }
     $dt = $document["date"]->sec;
     $date = date('Y-m-d H:i:s',$dt);
-    echo $document["author"] . " said on " . $date . ":<br><p>" .
+    if ($document["logged_in"]) {
+      $author = "<strong>".$document["author"]."</strong>";;
+    } else {
+      $author = $document["author"];
+    }
+    echo $author . " said on " . $date . ":<br><p>" .
       $document["comment"] . "</p>";
     $pos += 1;
 }
