@@ -33,7 +33,7 @@ function handle() {
       echo "<p>Human-ness test failed. Are you human?</p>";
       return;
     }
-    $hits = $db->insert(array("username"=>$username,"password"=>$password,"date"=>$date));
+    $hits = $db->insert(array("username"=>$username,"password"=>$password,"date"=>$date,"type"=>"User"));
     echo "<p>Welcome. Your account has been created as $username.</p>";
   }
 }
