@@ -9,7 +9,7 @@
                         <?php
                                 session_start();
 				unset($_SESSION["username"]);
-				echo "<META HTTP-EQUIV=Refresh CONTENT=\"3\"; URL=\"index.php/\">";
+				header("refresh: 3; index.php");
                         ?>
                 <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
             </div>

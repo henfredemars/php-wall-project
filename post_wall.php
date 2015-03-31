@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       } else {
         if (delete_comment($author,$password)) {
           echo "<p>Post was deleted.</p>";
-          echo "<META HTTP-EQUIV=Refresh CONTENT=\"3\"; URL=\"index.php/\">";
+	  header("refresh: 3; index.php");
         } else {
           echo "<p>Failed to delete a post.</p>";
         }
