@@ -8,13 +8,15 @@ $username = $_SESSION["username"];
 if (!empty($username)) {
   echo "<strong><mark>$username</strong></mark>";
   echo "<input type=\"hidden\" name=\"author\" value=\"$username\">";
+  echo "<a href=\"logout.php\" class=\"btn btn-default\">Logout</a>";
 } else {
   echo "<input type=\"text\" name=\"author\">";
 }
-
 ?>
-		Deletion Password: <input type="password" name="password">
-      Delete this Password Now?&nbsp<input name="delete" type="checkbox" value="delete"><br>
+
+      Deletion Password: <input type="password" name="password">
+      Delete this Password Now?&nbsp<input name="delete" type="checkbox" value="delete">
+		<br>
       <textarea class="form-control" rows="5" id="comment" name="comment"></textarea><br>
       <div class="g-recaptcha" data-sitekey="6LdBTAQTAAAAAIVAup0eBvTZISBCqnKfD5IzH71s"></div>
       <br/>
