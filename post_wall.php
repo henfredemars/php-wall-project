@@ -9,7 +9,7 @@
 <?php
 
 function post_comment($c,$a) {
-  $db = connect_comments();
+  $db = connect()->comments;
   $a = htmlspecialchars(trim($a));
   $c = htmlspecialchars(trim($c));
   if (empty($a) or empty($c)) {

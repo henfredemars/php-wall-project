@@ -12,7 +12,7 @@ Search string:<br>
 include("util.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $db = connect_comments();
+  $db = connect()->comments;
   $search = (string)$_POST["searchstr"];
   $where = array('comment' => array('$regex' => new MongoRegex("/$search/i")));
   $cursor = $db->find($where)->sort(array("date" => -1));

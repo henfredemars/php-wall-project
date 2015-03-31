@@ -18,7 +18,7 @@ namespace {
          */
         define('PASSWORD_BCRYPT', 1);
         define('PASSWORD_DEFAULT', PASSWORD_BCRYPT);
-        define('PASSWORD_BCRYPT_DEFAULT_COST', 10);
+        define('PASSWORD_BCRYPT_DEFAULT_COST', 12);
     }
 
     if (!function_exists('password_hash')) {

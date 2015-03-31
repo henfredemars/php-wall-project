@@ -15,7 +15,7 @@ include("password.php");
 
 function handle() {
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $db = connect_logins();
+    $db = connect()->logins;
     $username = (string)$_POST["username"];
     $_password = (string)$_POST["password"];
     $password = password_hash($_password, PASSWORD_BCRYPT);
@@ -34,9 +34,7 @@ function handle() {
       return;
     }
     $hits = $db->insert(array("username"=>$username,"password"=>$password,"date"=>$date));
-    echo "<p>Your account has been created.</p>";
-    echo $username;
-    echo $password;
+    echo "<p>Welcome. Your account has been created as $username.</p>";
   }
 }
 

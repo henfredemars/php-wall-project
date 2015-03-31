@@ -15,7 +15,7 @@ include("util.php");
 $countstart = 0;
 $countstop = 35;
 
-$db = connect_comments();
+$db = connect()->comments;
 $cursor = $db->find()->sort(array("date" => -1));
 $numComments = $db->count();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

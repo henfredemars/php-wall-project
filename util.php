@@ -1,15 +1,8 @@
 <?php
 
-function connect_comments() {
+function connect() {
   $m = new MongoClient();
-  $db = $m->wall->comments;
-  return $db;
-}
-
-function connect_logins() {
-  $m = new MongoClient();
-  $db = $m->wall->logins;
-  return $db;
+  return $m->wall;
 }
 
 function check_captcha() {
@@ -29,7 +22,7 @@ function check_captcha() {
   $context  = stream_context_create($options);
   $result = file_get_contents($gurl, false, $context);
   $json = json_decode($result,true);
-  return $json["success"];
+  return ($json["success"] == true);
 }
 
 function nosuchuser($user,$db) {
