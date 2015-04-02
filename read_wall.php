@@ -10,7 +10,9 @@
 <div style="padding-bottom: 50px;">
 <div style="background: AliceBlue;" class="col-lg-12">
 <?php
-include("util.php");
+include_once("util.php");
+
+inc_pages_served();
 
 $countstart = 0;
 $countstop = 35;

@@ -10,8 +10,10 @@ Password:
 
 
 <?php
-include("util.php");
+include_once("util.php");
 include("password.php");
+
+inc_pages_served();
 
 function handle() {
   if ($_SERVER["REQUEST_METHOD"] == "POST") {

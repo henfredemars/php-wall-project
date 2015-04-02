@@ -1,4 +1,4 @@
-<?php include('header.html') ?>
+<?php include('header.php') ?>
         <!-- Page Content -->
         <div id="page-content-wrapper">
             <div class="container-fluid">

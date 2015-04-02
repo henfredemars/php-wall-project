@@ -1,4 +1,4 @@
-<?php include("header.html"); ?>
+<?php include("header.php"); ?>
 
 <!-- Page Content -->
 <div id="page-content-wrapper">
@@ -7,7 +7,6 @@
             <div class="col-lg-12">
                 <h1>You are now Logged Out</h1>
                         <?php
-                                session_start();
 				unset($_SESSION["username"]);
 				header("refresh: 3; index.php");
                         ?>

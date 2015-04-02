@@ -3,9 +3,8 @@
 
 <?php
 
-session_start();
-$username = $_SESSION["username"];
-if (!empty($username)) {
+if (isset($_SESSION["username"])) {
+  $username = $_SESSION["username"];
   echo "<strong><mark>$username</strong></mark>";
   echo "<input type=\"hidden\" name=\"author\" value=\"$username\">";
   echo "<a href=\"logout.php\" class=\"btn btn-default\">Logout</a>";
@@ -14,7 +13,7 @@ if (!empty($username)) {
 }
 ?>
 
-      Deletion Password: <input type="password" name="password">
+      Deletion Password: <input type="text" name="password">
       Delete this Password Now?&nbsp<input name="delete" type="checkbox" value="delete">
 		<br>
       <textarea class="form-control" rows="5" id="comment" name="comment"></textarea><br>
@@ -59,7 +58,6 @@ function delete_comment($a,$p) {
   }
 }
 
-session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if ((string)$_POST["delete"] != "delete") {
     if (check_captcha()) {

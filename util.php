@@ -2,12 +2,25 @@
 
 function connect() {
   $m = new MongoClient();
-  return $m->wall;
+  return $m->phpwall;
+}
+
+function inc_pages_served() {
+  $db = connect();
+  $db = $db->stats;
+  $cursor = $db->find(array("pages_served"=>array('$exists'=>true)));
+  if ($cursor->count() == 0) {
+    $db->insert(array("pages_served"=>1));
+  } else {
+    $options = array("upsert" => true);
+    $query = array('$inc'=>array("pages_served"=>1));
+    $db->update(array(),$query,$options);
+  }
 }
 
 function check_captcha() {
   $gurl = "https://www.google.com/recaptcha/api/siteverify";
-  $secret = "supersecret";
+  $secret = "pieintheskydogs";
   $remoteip = $_SERVER['REMOTE_ADDR'];
   $data = array('secret' => $secret, 'response' => $_POST['g-recaptcha-response'],'remoteip' => $remoteip);
 

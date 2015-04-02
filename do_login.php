@@ -8,8 +8,10 @@ Password:
 
 
 <?php
-include("util.php");
+include_once("util.php");
 include("password.php");
+
+inc_pages_served();
 
 function check_ip_recent($ip,$db) {
   $time = new MongoDate();
@@ -27,9 +29,9 @@ function check_ip_recent($ip,$db) {
 function add_login_attempt($ip,$db) {
   $db = $db->login_attempts;
   $db->insert(array("ip"=>$ip,"time"=>new MongoDate()));
+  $db->createIndex(array("time"=>1),array("expireAfterSeconds"=>500));
 }
 
-session_start();
 function handle() {
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $db = connect();

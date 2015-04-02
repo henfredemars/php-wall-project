@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="A simple PHP wall" content="">
-    <meta name="henfredemars" content="">
+    <meta name="henfredemars" content="Anonymous comment board, class project">
 
     <title>PHP Wall Application</title>
 
@@ -25,6 +25,7 @@
     <![endif]-->
 
 	<script src='https://www.google.com/recaptcha/api.js'></script>
+	<script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
 
 </head>
 
@@ -46,15 +47,34 @@
 		<li>
 		    <a href="login.php">Login</a>
 		</li>
-                <li>
-                    <a href="about.php">About</a>
-                </li>
-                <li>
-                    <a href="contact.php">Contact</a>
-                </li>
 		<li>
 		    <a href="register.php">Register</a>
 		</li>
+		<?php
+		include_once("util.php");
+		session_start();
+		if (isset($_SESSION["username"])) {
+		  $db = connect();
+		  $db = $db->logins;
+		  $username = $_SESSION["username"];
+		  $cursor = $db->find(array("username"=>$username,"type"=>"Admin"));
+		  if ($cursor->count() > 0) {
+		    echo "<li><a href=\"post_blog.php\">New Blog Post</a></li>";
+		  }
+		}
+		?>
+		<li>
+		    <a href="blog.php">Blog</a>
+		</li>
+                <li>
+                    <a href="about.php">About</a>
+                </li>
+		<li>
+		    <a href="stats.php">Server Stats</a>
+		</li>
+                <li>
+                    <a href="contact.php">Contact</a>
+                </li>
 		<li>
 		    <a href="cans.php">Cans</a>
 		</li>

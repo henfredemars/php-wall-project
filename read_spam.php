@@ -1,6 +1,5 @@
 <?php
 
-$lines = file("words.txt");
 echo "<p>";
 $rand_keys = array_rand($lines, rand(3,150));
 $vals = array();
@@ -12,7 +11,7 @@ foreach ($vals as $val) {
   echo $val." ";
 }
 
-$limit = rand(0,8);
+$limit = rand(0,11);
 echo "<br><br>";
 for ($count=0;$count<$limit;$count+=1) {
   $start = substr(md5(rand()), 3, 12);

@@ -5,7 +5,9 @@
     </form><br>
 
 <?php
-include("util.php");
+include_once("util.php");
+
+inc_pages_served();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (check_captcha()) {
